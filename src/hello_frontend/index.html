@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Collection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .sidebar {
+            background-color: #444;
+            color: white;
+            padding: 15px;
+            width: 200px;
+        }
+
+        .brand-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .brand {
+            padding: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .brand:hover {
+            background-color: #666;
+        }
+
+        .brand.active {
+            background-color: #ff5722;
+        }
+
+        main {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .car-collection {
+            margin-top: 20px;
+        }
+
+        .car {
+            color: white; /* Text color for better contrast */
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .ferrari {
+            background-color: #c72c41; /* Ferrari red */
+        }
+
+        .tesla {
+            background-color: #333; /* Tesla black */
+        }
+
+        .ford {
+            background-color: #003DA5; /* Ford blue */
+        }
+
+        .porsche {
+            background-color: #FFFFFF; /* Porsche white */
+            color: black; /* Black text for better contrast */
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Car Collection</h1>
+    </header>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Brands</h2>
+            <ul class="brand-list">
+                <li class="brand active" onclick="filterCars('all')">All</li>
+                <li class="brand" onclick="filterCars('ferrari')">Ferrari</li>
+                <li class="brand" onclick="filterCars('tesla')">Tesla</li>
+                <li class="brand" onclick="filterCars('ford')">Ford</li>
+                <li class="brand" onclick="filterCars('porsche')">Porsche</li>
+            </ul>
+        </aside>
+        <main>
+            <section class="car-collection">
+                <div class="car ferrari">
+                    <h2>Car Model: Ferrari 488</h2>
+                    <p>Year: 2020</p>
+                    <p>Color: Red</p>
+                    <p>Engine: 3.9L V8</p>
+                </div>
+                <div class="car tesla">
+                    <h2>Car Model: Tesla Model S</h2>
+                    <p>Year: 2021</p>
+                    <p>Color: Black</p>
+                    <p>Engine: Electric</p>
+                </div>
+                <div class="car ford">
+                    <h2>Car Model: Ford Mustang</h2>
+                    <p>Year: 2022</p>
+                    <p>Color: Blue</p>
+                    <p>Engine: 5.0L V8</p>
+                </div>
+                <div class="car porsche">
+                    <h2>Car Model: Porsche 911</h2>
+                    <p>Year: 2019</p>
+                    <p>Color: White</p>
+                    <p>Engine: 3.0L H6</p>
+                </div>
+            </section>
+        </main>
+    </div>
+    <footer>
+        <p>&copy; 2024 My Car Collection</p>
+    </footer>
+
+    <script>
+        function filterCars(brand) {
+            const cars = document.querySelectorAll('.car');
+            cars.forEach(car => {
+                if (brand === 'all' || car.classList.contains(brand)) {
+                    car.style.display = 'block';
+                } else {
+                    car.style.display = 'none';
+                }
+            });
+            document.querySelectorAll('.brand').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            const activeTab = Array.from(document.querySelectorAll('.brand')).find(tab => tab.innerText.toLowerCase() === brand);
+            if (activeTab) activeTab.classList.add('active');
+        }
+    </script>
+</body>
+</html>
